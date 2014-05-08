@@ -1,10 +1,11 @@
 package examples.yamba;
 
-import com.marakana.android.yamba.clientlib.YambaClient;
-import com.marakana.android.yamba.clientlib.YambaClientException;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.Toast;
+
+import com.marakana.android.yamba.clientlib.YambaClient;
+import com.marakana.android.yamba.clientlib.YambaClientException;
 
 public class PostTask extends AsyncTask<String, Void, String> {
 	private Context callerContext;
