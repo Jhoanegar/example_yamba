@@ -16,8 +16,8 @@
         android:id="@+id/editStatus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/buttonTweet"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/buttonTweet"
         android:ems="10"
         android:gravity="top"
         android:hint="@string/hint_status"
@@ -30,9 +30,8 @@
         android:id="@+id/textCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/editStatus"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="14dp"
+        android:layout_alignLeft="@+id/buttonTweet"
+        android:layout_below="@+id/buttonTweet"
         android:text="140" />
 
 </RelativeLayout>

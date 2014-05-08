@@ -17,55 +17,50 @@ public class StatusActivity extends Activity implements OnClickListener {
 	private EditText editStatus;
 	private Button buttonTweet;
 	private TextView textCount;
-	private int defaultTextColor;
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_status);
-		
+
 		editStatus = (EditText) findViewById(R.id.editStatus);
 		buttonTweet = (Button) findViewById(R.id.buttonTweet);
 		buttonTweet.setOnClickListener(this);
 		textCount = (TextView) findViewById(R.id.textCount);
-		defaultTextColor = textCount.getTextColors().getDefaultColor();
-		
+		textCount.getTextColors().getDefaultColor();
+
 		editStatus.addTextChangedListener(new TextWatcher() {
-			
+
 			@Override
-			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void beforeTextChanged(CharSequence arg0, int arg1, int arg2,
+			public void onTextChanged(CharSequence arg0, int arg1, int arg2,
 					int arg3) {
-				// TODO Auto-generated method stub
-				
 			}
-			
+
+			@Override
+			public void beforeTextChanged(CharSequence arg0, int arg1,
+					int arg2, int arg3) {
+			}
+
 			@Override
 			public void afterTextChanged(Editable s) {
 				int charsLeft = 140 - editStatus.length();
 				textCount.setText(Integer.toString(charsLeft));
 				textCount.setTextColor(getColorBasedOnCharsLeft(charsLeft));
 			}
-			
-			private int getColorBasedOnCharsLeft(int charsLeft){
+
+			private int getColorBasedOnCharsLeft(int charsLeft) {
 				int green = Color.rgb(49, 158, 12);
 				int yellow = Color.rgb(157, 150, 12);
 				int red = Color.rgb(157, 20, 12);
-				
+
 				int color = green;
-				
+
 				if (charsLeft < 10) {
 					color = yellow;
 				}
 				if (charsLeft < 0) {
 					color = red;
 				}
-				
+
 				return color;
 			}
 		});
@@ -74,10 +69,9 @@ public class StatusActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		String status = editStatus.getText().toString();
-		Log.d(TAG,"onClick with status: " + status);
-		
+		Log.d(TAG, "onClick with status: " + status);
+
 		new PostTask(this).execute(status);
 	}
-	
 
 }
