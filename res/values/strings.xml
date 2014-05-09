@@ -11,5 +11,7 @@
     <string name="username_summary">Your username</string>
     <string name="password">Password</string>
     <string name="password_summary">Your password</string>
+    
+    <string name="action_settings">Settings</string>
 
 </resources>
