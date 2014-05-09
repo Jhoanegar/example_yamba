@@ -6,5 +6,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="button_tweet">Tweet</string>
     <string name="hint_status">What\'s going on?</string>
+    
+    <string name="title_username">Username</string>
+    <string name="username_summary">Your username</string>
+    <string name="password">Password</string>
+    <string name="password_summary">Your password</string>
 
 </resources>
