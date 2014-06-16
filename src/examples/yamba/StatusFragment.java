@@ -1,6 +1,7 @@
 package examples.yamba;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,6 +20,7 @@ public class StatusFragment extends Fragment implements OnClickListener {
 	private EditText editStatus;
 	private Button buttonTweet;
 	private TextView textCount;
+	SharedPreferences prefs;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,4 +80,7 @@ public class StatusFragment extends Fragment implements OnClickListener {
 
 		new PostTask(this.getActivity()).execute(status);
 	}
+	
+	
+
 }
