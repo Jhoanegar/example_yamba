@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
                      startActivity(new Intent(this, SettingsActivity.class)); // 
                      return true; // 
              case R.id.action_tweet:
-                     startActivity(new Intent("examples.yamba.action.tweet"));
+                     startActivity(new Intent(this, StatusActivity.class));
                      return true;
              default:
                      return false;

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.marakana.android.yamba.clientlib.YambaClient;
@@ -26,6 +27,7 @@ public class PostTask extends AsyncTask<String, Void, String> {
 			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(callerContext);
 			String username = prefs.getString("username","");
 			String password = prefs.getString("password","");
+			Log.d("PostTask","Retrieving credentials: " + username + " " + password);
 			if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
 				callerContext.startActivity(new Intent(callerContext,SettingsActivity.class));
 				return "Please update your username and password";
