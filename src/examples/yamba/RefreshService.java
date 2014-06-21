@@ -1,10 +1,22 @@
 package examples.yamba;
 
+import java.util.List;
+
+import com.marakana.android.yamba.clientlib.YambaClient;
+import com.marakana.android.yamba.clientlib.YambaClient.Status;
+import com.marakana.android.yamba.clientlib.YambaClientException;
+
 import android.app.IntentService;
 import android.app.Service;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 public class RefreshService extends IntentService {
 	static final String TAG = "RefreshService";
@@ -26,7 +38,36 @@ public class RefreshService extends IntentService {
 
 	@Override
 	public void onHandleIntent(Intent intent) {
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+		final String username = prefs.getString("username", "");
+		final String password = prefs.getString("password","");
+		if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+			Toast.makeText(this, "Please update your username and password", Toast.LENGTH_LONG).show();
+			return;
+		}
 		Log.d(TAG,"onStart");
+		
+		DBHelper dbHelper = new DBHelper(this);
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		ContentValues values = new ContentValues();
+		YambaClient cloud = new YambaClient(username, password);
+		try{
+			List<Status> timeline = cloud.getTimeline(20);
+			for (Status status : timeline){
+				values.clear();
+				values.put(StatusContract.Column.ID,status.getId());
+				values.put(StatusContract.Column.USER,status.getUser());
+				values.put(StatusContract.Column.MESSAGE,status.getMessage());
+				values.put(StatusContract.Column.CREATED_AT, status.getCreatedAt().getTime());
+				
+				db.insertWithOnConflict(StatusContract.TABLE, null, values, SQLiteDatabase.CONFLICT_IGNORE);
+				
+			}
+		} catch (YambaClientException e){
+			Log.e(TAG,"Failed to fetch the timeline");
+			e.printStackTrace();
+		}
+		
 		return;
 	}
 
