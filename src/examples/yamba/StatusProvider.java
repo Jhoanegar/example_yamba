@@ -27,7 +27,6 @@ public class StatusProvider extends ContentProvider {
 	@Override
 	public int delete(Uri uri, String selection, String[] selectionArgs) {
 		String where;
-
 		switch (sURIMatcher.match(uri)) {
 		case StatusContract.STATUS_DIR:
 			// so we count deleted rows
@@ -97,8 +96,8 @@ public class StatusProvider extends ContentProvider {
 
 	@Override
 	public boolean onCreate() {
-		// TODO Auto-generated method stub
-		return false;
+		dbHelper = new DBHelper(getContext());
+		return true;
 	}
 
 	@Override
@@ -106,7 +105,6 @@ public class StatusProvider extends ContentProvider {
 			String[] selectionArgs, String sortOrder) {
 		SQLiteQueryBuilder queryBuilder = new SQLiteQueryBuilder();
 		queryBuilder.setTables(StatusContract.TABLE);
-
 		switch (sURIMatcher.match(uri)) {
 		case StatusContract.STATUS_DIR:
 			break;
