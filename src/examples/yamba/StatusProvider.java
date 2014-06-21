@@ -32,28 +32,25 @@ public class StatusProvider extends ContentProvider {
 			// so we count deleted rows
 			where = (selection == null) ? "1" : selection;
 			break;
-			case StatusContract.STATUS_ITEM:
+		case StatusContract.STATUS_ITEM:
 			long id = ContentUris.parseId(uri);
 			where = StatusContract.Column.ID
-			+ "="
-			+ id
-			+ (TextUtils.isEmpty(selection) ? "" : " and ( "
-			+ selection + " )");
+					+ "="
+					+ id
+					+ (TextUtils.isEmpty(selection) ? "" : " and ( "
+							+ selection + " )");
 			break;
-			default:
+		default:
 			throw new IllegalArgumentException("Illegal uri: " + uri);
-			}
-			SQLiteDatabase db = dbHelper.getWritableDatabase();
-			int ret = db.delete(StatusContract.TABLE, where, selectionArgs);
-			if(ret>0) {
+		}
+		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		int ret = db.delete(StatusContract.TABLE, where, selectionArgs);
+		if (ret > 0) {
 			// Notify that data for this uri has changed
 			getContext().getContentResolver().notifyChange(uri, null);
-			}
-			Log.d(TAG, "deleted records: " + ret);
-			return ret;
-			}
-
 		}
+		Log.d(TAG, "deleted records: " + ret);
+		return ret;
 	}
 
 	@Override
@@ -129,14 +126,14 @@ public class StatusProvider extends ContentProvider {
 		default:
 			throw new IllegalArgumentException("Illegal uri: " + uri);
 		}
-		
+
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		int ret = db.update(StatusContract.TABLE, values, where, selectionArgs);
-		
-		if (ret > 0){
+
+		if (ret > 0) {
 			getContext().getContentResolver().notifyChange(uri, null);
 		}
-		Log.d(TAG,"Updated records: " + ret);
+		Log.d(TAG, "Updated records: " + ret);
 		return ret;
 	}
 
