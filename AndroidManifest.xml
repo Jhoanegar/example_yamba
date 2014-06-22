@@ -37,6 +37,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity 
+            android:name="examples.yamba.DetailsActivity">
+<!--             android:label="@string/app_name"> -->
+        </activity>
         
         <service android:name=".RefreshService" />
         <provider android:name="examples.yamba.StatusProvider"

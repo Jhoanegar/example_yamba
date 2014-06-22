@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:baselineAligned="false"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+    
+	<fragment
+	    android:id="@+id/fragment_timeline"
+	    android:name="examples.yamba.TimelineFragment"
+	    android:layout_width="0dp"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1"
+	    tools:layout="@layout/list_content" />
+	
+	<fragment
+	    android:id="@+id/fragment_details"
+	    android:name="examples.yamba.DetailsFragment"
+	    android:layout_width="0dp"
+	    android:layout_height="match_parent"
+	    android:layout_weight="1"
+	    tools:layout="@layout/list_item"/>
+	
+</LinearLayout>
