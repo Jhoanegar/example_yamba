@@ -35,6 +35,9 @@
         </activity>
         
         <service android:name=".RefreshService" />
+        <provider android:name="examples.yamba.StatusProvider"
+            android:authorities="examples.yamba.StatusProvider"
+            android:exported="false" />
     </application>
 
 </manifest>
