@@ -22,16 +22,15 @@ public class NotificationReceiver extends BroadcastReceiver {
 		PendingIntent operation = PendingIntent.getActivity(context, -1,
 				new Intent(context, MainActivity.class),
 				PendingIntent.FLAG_ONE_SHOT);
-
-		//Uri ringtoneUri = RingtoneManager.getActualDefaultRingtoneUri(null, RingtoneManager.TYPE_NOTIFICATION);
 		
+		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 		@SuppressWarnings("deprecation")
 		Notification notification = new Notification.Builder(context)
 				.setContentTitle("New teeets!")
 				.setContentText("You've got " + count + " new tweets")
 				.setSmallIcon(android.R.drawable.sym_action_email)
 				.setContentIntent(operation).setAutoCancel(true)
-				//.setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
+				.setSound(alarmSound)
 				.getNotification();
 		notificationManager.notify(NOTIFICATION_ID,notification);
 	}
