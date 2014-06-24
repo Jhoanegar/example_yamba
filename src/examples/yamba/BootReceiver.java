@@ -11,8 +11,8 @@ import android.util.Log;
 
 public class BootReceiver extends BroadcastReceiver {
 	private static final String TAG = BootReceiver.class.getSimpleName();
-	private static final long DEFAULT_INTERVAL = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-
+	private static final long DEFAULT_INTERVAL = 60000;
+	// TODO: restore default interval
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		context.startService(new Intent(context, RefreshService.class));

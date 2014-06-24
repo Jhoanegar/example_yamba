@@ -65,10 +65,18 @@ public class RefreshService extends IntentService {
 				values.put(StatusContract.Column.CREATED_AT, status
 						.getCreatedAt().getTime());
 
-				Uri uri = getContentResolver().insert(StatusContract.CONTENT_URI, values);
-				if (uri != null){
+				Uri uri = getContentResolver().insert(
+						StatusContract.CONTENT_URI, values);
+				if (uri != null) {
 					count++;
-					Log.d(TAG,String.format("%s: %s",status.getUser(),status.getMessage()));
+					Log.d(TAG,
+							String.format("%s: %s", status.getUser(),
+									status.getMessage()));
+				}
+				if (count > 0) {
+					sendBroadcast(new Intent(
+							"examples.yamba.action.NEW_STATUSES").putExtra(
+							"count", count));
 				}
 
 			}
