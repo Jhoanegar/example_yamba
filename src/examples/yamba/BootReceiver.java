@@ -7,14 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 public class BootReceiver extends BroadcastReceiver {
 	private static final String TAG = BootReceiver.class.getSimpleName();
-	private static final long DEFAULT_INTERVAL = 60000;
-	// TODO: restore default interval
+	private static final long DEFAULT_INTERVAL = AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		context.startService(new Intent(context, RefreshService.class));
@@ -36,7 +34,7 @@ public class BootReceiver extends BroadcastReceiver {
 		} else {
 			alarmManager.setInexactRepeating(AlarmManager.RTC,
 					System.currentTimeMillis(), interval, operation);
-			Log.d(TAG,"setting repeat operation for: " + interval);
+			Log.d(TAG, "setting repeat operation for: " + interval);
 		}
 
 	}

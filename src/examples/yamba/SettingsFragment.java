@@ -21,7 +21,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 		prefs.registerOnSharedPreferenceChangeListener(this);
 	}
 	@Override
-	public void onSharedPreferenceChanged(SharedPreferences arg0, String arg1) {
+	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 		// TODO Auto-generated method stub
 		
 	}
