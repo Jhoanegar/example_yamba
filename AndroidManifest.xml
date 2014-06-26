@@ -10,8 +10,8 @@
         android:targetSdkVersion="18" />
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -21,8 +21,9 @@
             android:name="examples.yamba.StatusActivity"
             android:label="@string/app_name" >
             <intent-filter>
-                <action android:name="examples.yamba.action.tweet"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="examples.yamba.action.tweet" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
@@ -38,30 +39,44 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity 
-            android:name="examples.yamba.DetailsActivity">
-<!--             android:label="@string/app_name"> -->
+        <activity android:name="examples.yamba.DetailsActivity" >
+
+            <!-- android:label="@string/app_name"> -->
         </activity>
-        
+
         <service android:name=".RefreshService" />
-        <provider android:name="examples.yamba.StatusProvider"
+
+        <provider
+            android:name="examples.yamba.StatusProvider"
             android:authorities="examples.yamba.StatusProvider"
             android:exported="false" />
-        
-        <receiver android:name=".BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
 
-        <receiver 
-            android:name="examples.yamba.NotificationReceiver"
-            android:exported="false">
+        <receiver android:name=".BootReceiver" >
             <intent-filter>
-                <action android:name="examples.yamba.action.NEW_STATUSES"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        
+        <receiver
+            android:name="examples.yamba.NotificationReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="examples.yamba.action.NEW_STATUSES" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="examples.yamba.YambaWidget"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="examples.yamba.action.NEW_STATUSES" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/yamba_widget" />
+        </receiver>
     </application>
 
 </manifest>
