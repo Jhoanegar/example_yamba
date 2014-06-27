@@ -25,7 +25,7 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
 		if (key.equals("interval")){
 			Log.d("SettingsFragment","setting alarm");
-			BootReceiver.setAlarm(YambaApplication.getAppContext(), null);
+			AlarmCreator.setAlarm(YambaApplication.getAppContext(), null);
 		}
 		
 	}
