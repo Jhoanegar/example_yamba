@@ -22,7 +22,7 @@ public class NotificationReceiver extends BroadcastReceiver {
 				.getSystemService(Context.NOTIFICATION_SERVICE);
 		int count = intent.getIntExtra("count", 0);
 		PendingIntent operation = PendingIntent.getActivity(context, -1,
-				new Intent(context, MainActivity.class),
+				new Intent(context, YambaApplication.class),
 				PendingIntent.FLAG_ONE_SHOT);
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

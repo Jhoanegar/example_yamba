@@ -36,7 +36,7 @@ public class YambaWidget extends AppWidgetProvider {
 				.getColumnIndex(StatusContract.Column.CREATED_AT));
 
 		PendingIntent operation = PendingIntent.getActivity(context, -1,
-				new Intent(context, MainActivity.class),
+				new Intent(context, YambaApplication.class),
 				PendingIntent.FLAG_UPDATE_CURRENT);
 
 		// Loop through all the instances of YambaWidget
