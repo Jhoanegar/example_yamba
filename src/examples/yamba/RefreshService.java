@@ -10,7 +10,6 @@ import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -50,8 +49,6 @@ public class RefreshService extends IntentService {
 		}
 		Log.d(TAG, "onStart");
 
-		DBHelper dbHelper = new DBHelper(this);
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
 		YambaClient cloud = new YambaClient(username, password);
 		try {
@@ -91,7 +88,6 @@ public class RefreshService extends IntentService {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

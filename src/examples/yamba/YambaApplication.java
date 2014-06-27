@@ -1,6 +1,7 @@
 package examples.yamba;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,13 +9,15 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 public class YambaApplication extends Activity {
+	private static Context appContext;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		appContext = this.getApplicationContext();
 	}
-	
+
 	 @Override
      public boolean onCreateOptionsMenu(Menu menu) {
              // Inflate the menu items to the action bar.
@@ -23,11 +26,11 @@ public class YambaApplication extends Activity {
      }
      // Called every time user clicks on an action
      @Override
-     public boolean onOptionsItemSelected(MenuItem item) { // 
-             switch (item.getItemId()) { // 
+     public boolean onOptionsItemSelected(MenuItem item) { //
+             switch (item.getItemId()) { //
              case R.id.action_settings:
-            	 startActivity(new Intent(this, SettingsActivity.class)); // 
-            	 return true; // 
+            	 startActivity(new Intent(this, SettingsActivity.class)); //
+            	 return true; //
              case R.id.action_tweet:
             	 startActivity(new Intent(this, StatusActivity.class));
             	 return true;
@@ -49,7 +52,8 @@ public class YambaApplication extends Activity {
 		 else{
     		 throw new IllegalArgumentException();
     	 }
-    	 
      }
-     
+     public static Context getAppContext(){
+    	 return appContext;
+     }
 }
