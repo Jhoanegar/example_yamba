@@ -5,6 +5,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class SettingsFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener{
 	private SharedPreferences prefs;
@@ -22,7 +23,10 @@ public class SettingsFragment extends PreferenceFragment implements OnSharedPref
 	}
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-		// TODO Auto-generated method stub
+		if (key.equals("interval")){
+			Log.d("SettingsFragment","setting alarm");
+			BootReceiver.setAlarm(YambaApplication.getAppContext(), null);
+		}
 		
 	}
 

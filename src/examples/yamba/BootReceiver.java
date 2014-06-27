@@ -15,6 +15,11 @@ public class BootReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		BootReceiver.setAlarm(context, intent);
+
+	}
+	
+	public static void setAlarm(Context context, Intent intent){
 		context.startService(new Intent(context, RefreshService.class));
 		SharedPreferences prefs = PreferenceManager
 				.getDefaultSharedPreferences(context);
@@ -36,6 +41,5 @@ public class BootReceiver extends BroadcastReceiver {
 					System.currentTimeMillis(), interval, operation);
 			Log.d(TAG, "setting repeat operation for: " + interval);
 		}
-
 	}
 }

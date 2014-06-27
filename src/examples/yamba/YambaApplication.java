@@ -1,18 +1,20 @@
 package examples.yamba;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
-
+public class YambaApplication extends Activity {
+	private static Context appContext;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		appContext = this.getApplicationContext();
 	}
 	
 	 @Override
@@ -50,6 +52,10 @@ public class MainActivity extends Activity {
     		 throw new IllegalArgumentException();
     	 }
     	 
+     }
+     
+     public static Context getAppContext(){
+    	 return appContext;
      }
      
 }

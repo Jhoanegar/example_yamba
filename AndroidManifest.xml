@@ -30,7 +30,7 @@
             android:label="@string/action_settings" >
         </activity>
         <activity
-            android:name="examples.yamba.MainActivity"
+            android:name="examples.yamba.YambaApplication"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
